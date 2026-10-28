@@ -23,6 +23,7 @@ const stake = require("./routes/stakeRoute");
 const tx = require("./routes/transactionRoute");
 const governance = require("./routes/governanceRoute");
 const leaderboard = require("./routes/leaderboardRoute");
+const pulok = require("./routes/pulokRoute");
 
 app.use("/api/wallet", wallet);
 app.use("/api/vaults", vaults);
@@ -31,6 +32,7 @@ app.use("/api/stake", stake);
 app.use("/api/tx", tx);
 app.use("/api/governance", governance);
 app.use("/api/leaderboard", leaderboard);
+app.use("/api/pulok", pulok);
 
 // deployment
 __dirname = path.resolve();
@@ -53,6 +55,7 @@ if (process.env.NODE_ENV === "production") {
         tx: "/api/tx",
         governance: "/api/governance",
         leaderboard: "/api/leaderboard",
+        pulok: "/api/pulok",
       },
     });
   });

